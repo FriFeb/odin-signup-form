@@ -5,7 +5,8 @@
 
 :root {
   font-size: 62.5%;
-  --theme-color: greenyellow;
+  --space-size: max(3rem, 5vh);
+  --theme-color: hsl(120, 50%, 40%);
 }
 
 html {
@@ -34,19 +35,23 @@ body {
 
 .disclaimer {
   font-size: 2rem;
-  margin: 15rem 0 3rem 5rem;
+  margin: 15rem 0 5rem 5rem;
+  /* margin-bottom: var(--space-size); */
   width: 70%;
 }
 
 .form-container {
+  /* padding: var(--space-size) 0; */
+  /* padding-left: 5rem; */
   padding: 3rem 0 3rem 5rem;
   background-color: hsl(0, 0%, 100%);
+  box-shadow: 0.5rem 0.5rem 1rem hsl(0, 0%, 70%);
 }
 
 .form-title {
   font-family: "Times New Roman", Times, serif;
   font-size: 2.5rem;
-  margin-bottom: 2rem;
+  margin-bottom: 3rem;
 }
 
 .reg-form {
@@ -61,7 +66,7 @@ body {
 }
 
 .reg-form > div:not(:last-child) {
-  margin-bottom: min(2rem, 3vh);
+  margin-bottom: min(3rem, 3vh);
 }
 
 .reg-form > div > div {
@@ -77,17 +82,25 @@ input {
   padding: 1rem;
   width: 80%;
   font-size: 1.6rem;
+  border-radius: 1rem;
 }
 
 .form-footer {
-  padding: 3rem 0 0 5rem;
+  padding: 5rem 0 0 5rem;
 }
 
 button {
   padding: 1rem;
-  width: 30rem;
+  width: 25rem;
   font-size: 1.6rem;
   margin-bottom: 1rem;
+  border-radius: 1rem;
+  color: white;
+  background-color: var(--theme-color);
+}
+
+a {
+  color: var(--theme-color);
 }
 
 .image-side {
@@ -125,9 +138,9 @@ img {
 }
 
 input:valid {
-  background-color: greenyellow;
+  border: 1px solid green;
 }
 
 input:invalid {
-  background-color: red;
+  border: 1px solid red;
 }
