@@ -142,13 +142,11 @@ pass.addEventListener("change", showPassErrorMsg);
 confirmPass.addEventListener("change", showConfirmPassErrorMsg);
 
 function togglePasswordVisibility(eye, element) {
-  eye.classList.toggle("open");
-
-  if (eye.classList.contains("open")) {
-    eye.src = "./images/eye.png";
+  if (element.type === "password") {
+    eye.src = "./images/closed_eye.png";
     element.type = "text";
   } else {
-    eye.src = "./images/closed_eye.png";
+    eye.src = "./images/eye.png";
     element.type = "password";
   }
 }
