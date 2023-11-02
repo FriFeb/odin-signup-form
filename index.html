@@ -36,37 +36,45 @@
 					<div class="form-personal">
 						<div class="form-first-name">
 							<label for="first-name">First Name</label>
-							<input type="text" name="firstName" id="first-name" minlength="2" maxlength="40"
-								pattern="^[A-Z][a-z]{1,39}" required>
+							<input type="text" name="firstName" id="first-name" minlength="2" maxlength="40" pattern="^[A-Z].{1,39}"
+								required>
+							<p class="error"></p>
 						</div>
 						<div class="form-second-name">
 							<label for="second-name">Second Name</label>
-							<input type="text" name="secondName" id="second-name" minlength="2" maxlength="40"
-								pattern="^[A-Z][a-z]{1,39}" required>
+							<input type="text" name="secondName" id="second-name" minlength="2" maxlength="40" pattern="^[A-Z].{1,39}"
+								required>
+							<p class="error"></p>
+
 						</div>
 					</div>
 					<div class="form-social">
 						<div class="form-email">
 							<label for="email">Email</label>
-							<input type="email" name="email" id="email" minlength="2" maxlength="50" required>
+							<input type="email" name="email" id="email" minlength="5" maxlength="50" pattern=".{5,50}" required>
+							<p class="error"></p>
 						</div>
 						<div class="form-phone">
 							<label for="phone">Phone Number</label>
-							<input type="tel" name="phone" id="phone" minlength="11" maxlength="11" required>
+							<input type="tel" name="phone" id="phone" minlength="11" maxlength="11" pattern="\d{11}" required>
+							<p class="error"></p>
 						</div>
 					</div>
 					<div class="form-pass">
 						<div class="form-pass">
 							<label for="pass">Password</label>
-							<input type="password" name="pass" id="pass" minlength="6" maxlength="30"
-								pattern="^(?=.*[A-Z])(?=.*[a-z])(?=.*\d).{6,30}" required>
-							<!-- <img src="./images/question.png" alt="" class="pass-help"> -->
+							<div class="pass-container">
+								<input type="password" name="pass" id="pass" minlength="6" maxlength="30"
+									pattern="^(?=.*[A-Z])(?=.*[a-z])(?=.*\d).{6,30}" required>
+								<img src="./images/question.png" alt="" class="pass-help">
+							</div>
+							<p class="error"></p>
 						</div>
 						<div class="form-confirm-pass">
 							<label for="confirm-pass">Confirm Password</label>
 							<input type="password" name="confirmPass" id="confirm-pass" minlength="6" maxlength="30"
 								pattern="^(?=.*[A-Z])(?=.*[a-z])(?=.*\d).{6,30}" required>
-							<!-- <img src="./images/question.png" alt="" class="confirm-pass-help"> -->
+							<p class="error"></p>
 						</div>
 					</div>
 
