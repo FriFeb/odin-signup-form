@@ -92,6 +92,30 @@ input {
   border: 1px solid hsl(0, 0%, 80%);
 }
 
+.pass-container {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.pass-help {
+  margin-left: 0.5rem;
+  width: 2rem;
+}
+
+.pass-eye,
+.confirm-pass-eye {
+  width: 20px;
+  position: absolute;
+  right: 45px;
+}
+
+:is(.pass-eye, .confirm-pass-eye):hover {
+  cursor: pointer;
+  scale: 1.1;
+  transition: 0.2s;
+}
+
 input.error {
   border: 1px solid darkred;
 }
@@ -99,16 +123,6 @@ input.error {
 p.error {
   color: darkred;
   margin-top: 2px;
-}
-
-.pass-container {
-  display: flex;
-  align-items: center;
-}
-
-.pass-help {
-  margin-left: 0.5rem;
-  width: 2rem;
 }
 
 .form-footer {

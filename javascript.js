@@ -6,6 +6,8 @@ const email = document.getElementById("email");
 const phone = document.getElementById("phone");
 const pass = document.getElementById("pass");
 const confirmPass = document.getElementById("confirm-pass");
+const passEye = document.querySelector(".pass-eye");
+const confirmPassEye = document.querySelector(".confirm-pass-eye");
 
 function showNameErrorMsg(event) {
   const nameInput = event.target;
@@ -115,7 +117,8 @@ function showPassErrorMsg() {
 }
 
 function showConfirmPassErrorMsg() {
-  const confirmPassError = confirmPass.nextElementSibling;
+  const confirmPassError =
+    confirmPass.parentElement.parentElement.lastElementChild;
 
   confirmPass.classList.remove("error");
   confirmPassError.textContent = "";
@@ -137,3 +140,23 @@ email.addEventListener("change", showEmailErrorMsg);
 phone.addEventListener("change", showPhoneErrorMsg);
 pass.addEventListener("change", showPassErrorMsg);
 confirmPass.addEventListener("change", showConfirmPassErrorMsg);
+
+function togglePasswordVisibility(eye, element) {
+  eye.classList.toggle("open");
+
+  if (eye.classList.contains("open")) {
+    eye.src = "./images/eye.png";
+    element.type = "text";
+  } else {
+    eye.src = "./images/closed_eye.png";
+    element.type = "password";
+  }
+}
+
+passEye.addEventListener("click", () => {
+  togglePasswordVisibility(passEye, pass);
+});
+
+confirmPassEye.addEventListener("click", () => {
+  togglePasswordVisibility(confirmPassEye, confirmPass);
+});
