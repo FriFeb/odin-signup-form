@@ -8,6 +8,9 @@ const pass = document.getElementById("pass");
 const confirmPass = document.getElementById("confirm-pass");
 const passEye = document.querySelector(".pass-eye");
 const confirmPassEye = document.querySelector(".confirm-pass-eye");
+const passHelp = document.querySelector(".pass-help");
+const passTooltip = document.querySelector(".pass-tooltip");
+let timer;
 
 function showNameErrorMsg(event) {
   const nameInput = event.target;
@@ -79,6 +82,20 @@ function showPhoneErrorMsg() {
   }
 }
 
+function updateTooltipState(...errors) {
+  const passTooltipImgs = passTooltip.querySelectorAll("img");
+
+  for (let i = 0; i < errors.length; i++) {
+    if (errors[i]) {
+      passTooltipImgs[i].src = "./images/red_cross.png";
+    } else {
+      passTooltipImgs[i].src = "./images/green_check.png";
+    }
+  }
+
+  console.log(errors);
+}
+
 function showPassErrorMsg() {
   const passValue = pass.value;
   const validityState = pass.validity;
@@ -87,6 +104,11 @@ function showPassErrorMsg() {
   const capitalLetterRegExp = /(?=.*[A-Z])./;
   const letterRegExp = /^(?=.*[a-z])/;
   const digitRegExp = /^(?=.*\d)/;
+
+  const capitalError = !capitalLetterRegExp.test(passValue);
+  const letterError = !letterRegExp.test(passValue);
+  const digitError = !digitRegExp.test(passValue);
+  const lengthError = validityState.tooShort;
 
   pass.classList.remove("error");
   passError.textContent = "";
@@ -99,21 +121,23 @@ function showPassErrorMsg() {
   if (validityState.patternMismatch) {
     pass.classList.add("error");
 
-    if (!capitalLetterRegExp.test(passValue)) {
+    if (capitalError) {
       passError.textContent = "* Should contain at least one capital letter!";
     }
-    if (!letterRegExp.test(passValue)) {
+    if (letterError) {
       passError.textContent = "* Should contain at least one letter!";
     }
-    if (!digitRegExp.test(passValue)) {
+    if (digitError) {
       passError.textContent = "* Should contain at least one digit!";
     }
   }
 
-  if (validityState.tooShort) {
+  if (lengthError) {
     pass.classList.add("error");
     passError.textContent = "* Password is too short!";
   }
+
+  updateTooltipState(capitalError, letterError, digitError, lengthError);
 }
 
 function showConfirmPassErrorMsg() {
@@ -134,13 +158,6 @@ function showConfirmPassErrorMsg() {
   }
 }
 
-firstName.addEventListener("change", showNameErrorMsg);
-secondName.addEventListener("change", showNameErrorMsg);
-email.addEventListener("change", showEmailErrorMsg);
-phone.addEventListener("change", showPhoneErrorMsg);
-pass.addEventListener("change", showPassErrorMsg);
-confirmPass.addEventListener("change", showConfirmPassErrorMsg);
-
 function togglePasswordVisibility(eye, element) {
   if (element.type === "password") {
     eye.src = "./images/closed_eye.png";
@@ -151,10 +168,45 @@ function togglePasswordVisibility(eye, element) {
   }
 }
 
+function centerTooltip(targetCoords, tooltipCoords) {
+  // Cant use help icon (?) to set coords with .css because of parent container
+  const top = targetCoords.top - tooltipCoords.height - 25;
+  const left =
+    targetCoords.left - (tooltipCoords.width - targetCoords.width) / 2;
+
+  passTooltip.style.top = top + "px";
+  passTooltip.style.left = left + "px";
+}
+
+function showTooltip(event) {
+  passTooltip.hidden = false;
+
+  centerTooltip(
+    event.target.getBoundingClientRect(),
+    passTooltip.getBoundingClientRect()
+  );
+}
+
+function delayTooltip(event) {
+  timer = setTimeout(() => {
+    showTooltip(event);
+  }, 500);
+}
+
+firstName.addEventListener("change", showNameErrorMsg);
+secondName.addEventListener("change", showNameErrorMsg);
+email.addEventListener("change", showEmailErrorMsg);
+phone.addEventListener("change", showPhoneErrorMsg);
+pass.addEventListener("change", showPassErrorMsg);
+confirmPass.addEventListener("change", showConfirmPassErrorMsg);
 passEye.addEventListener("click", () => {
   togglePasswordVisibility(passEye, pass);
 });
-
 confirmPassEye.addEventListener("click", () => {
   togglePasswordVisibility(confirmPassEye, confirmPass);
+});
+passHelp.addEventListener("mouseover", delayTooltip);
+passHelp.addEventListener("mouseout", () => {
+  passTooltip.hidden = true;
+  clearTimeout(timer);
 });

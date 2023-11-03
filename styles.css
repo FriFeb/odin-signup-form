@@ -74,7 +74,7 @@ body {
   margin-bottom: min(3rem, 3vh);
 }
 
-.reg-form > div > div {
+.reg-form > div > div:not(.pass-tooltip) {
   display: flex;
   flex-direction: column;
   width: 25rem;
@@ -98,11 +98,6 @@ input {
   position: relative;
 }
 
-.pass-help {
-  margin-left: 0.5rem;
-  width: 2rem;
-}
-
 .pass-eye,
 .confirm-pass-eye {
   width: 20px;
@@ -114,6 +109,31 @@ input {
   cursor: pointer;
   scale: 1.1;
   transition: 0.2s;
+}
+
+.pass-help {
+  margin-left: 0.5rem;
+  width: 2rem;
+  z-index: 2;
+}
+
+.pass-help:hover {
+  scale: 1.1;
+  transition: 0.2s;
+}
+
+.pass-tooltip {
+  position: absolute;
+  z-index: 1;
+  background-color: white;
+  border: 1px solid;
+  border-radius: 1rem;
+  padding: 1rem;
+}
+
+.tooltip-img {
+  width: 1.5rem;
+  margin-right: 0.5rem;
 }
 
 input.error {
@@ -185,9 +205,10 @@ a {
 }
 
 .credits {
-  text-align: center;
   margin-bottom: 1rem;
+  padding: 0.5rem;
+  text-align: center;
   color: white;
-  /* background-color: rgba(0, 0, 0, 40%); */
+  background-color: rgba(0, 0, 0, 50%);
   text-shadow: 2px 2px black;
 }

@@ -18,7 +18,15 @@
 				<img src="./images/logo.jpg" alt="" class="logo-image">
 				<p class="logo-text">Lorem Ipsum</p>
 			</div>
-			<div class="credits">Photo by Annie Spratt on Unsplash</div>
+			<div class="credits">
+				<p>Help icon by Freepick on Flaticon</p>
+				<p>Logo by AndreaCharlesta on Freepick</p>
+				<p>Open eye icon by gravisio on Flaticon</p>
+				<p>Private eye icon by Becris on Flaticon</p>
+				<p>Green check icon by juicy_fish on Flaticon</p>
+				<p>Red cross icon by Pixel perfect on Flaticon</p>
+				<p>Background photo by Annie Spratt on Unsplash</p>
+			</div>
 		</div>
 
 		<div class="form-side">
@@ -60,7 +68,17 @@
 							<p class="error"></p>
 						</div>
 					</div>
-					<div class="form-pass">
+					<div class="form-passwords">
+
+						<div class="pass-tooltip" hidden>
+							<p><img src="./images/red_cross.png" alt="" class="tooltip-img">At least one capital
+								letter!</p>
+							<p><img src="./images/red_cross.png" alt="" class="tooltip-img">At least one lowercase letter!</p>
+							<p><img src="./images/red_cross.png" alt="" class="tooltip-img">At least one digit!</p>
+							<p><img src="./images/red_cross.png" alt="" class="tooltip-img">Minimum 6 characters in length!
+							</p>
+						</div>
+
 						<div class="form-pass">
 							<label for="pass">Password</label>
 							<div class="pass-container">
@@ -68,9 +86,11 @@
 									pattern="^(?=.*[A-Z])(?=.*[a-z])(?=.*\d).{6,30}" required>
 								<img src="./images/eye.png" alt="" class="pass-eye">
 								<img src="./images/question.png" alt="" class="pass-help">
+
 							</div>
 							<p class="error"></p>
 						</div>
+
 						<div class="form-confirm-pass">
 							<label for="confirm-pass">Confirm Password</label>
 							<div class="pass-container">
